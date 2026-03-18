@@ -1,0 +1,34 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Build Linux
+        run: GOOS=linux GOARCH=amd64 go build -o animationGO-linux-amd64 .
+
+      - name: Build Windows
+        run: GOOS=windows GOARCH=amd64 go build -o animationGO-windows-amd64.exe .
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            animationGO-linux-amd64
+            animationGO-windows-amd64.exe
