@@ -44,3 +44,8 @@ You can modify the following constants in `ascii_animation.go` to customize the 
 ```
 This will display a 3-second animation of `sample.png` converted to ASCII art with a pulsing brightness effect.
 
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
